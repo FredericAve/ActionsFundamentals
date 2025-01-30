@@ -3,7 +3,7 @@ name: GitHub Actions Demo
 on:
   push:
     branches: main
-      paths-ignore: [.github/**]
+    paths-ignore: [.github/**]
   pull_request:
     branches: main
   schedule:
@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output event that triggered the workflow
-        runs:
-          echo "The job was trigerred by event: ${{github.event_name }}"
-          echo "The name of your branch is ${{github.ref }} and your repositery is ."
+        run: |
+          echo "The job was triggered by event: ${{ github.event_name }}"
+          echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}"
 
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: List all files in repositery
-        run: 
+        run: |
           echo "The repositery ${{ github.repositery }} contains the following files"
           tree
